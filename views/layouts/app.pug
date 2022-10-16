@@ -1,0 +1,19 @@
+extends ./base.pug
+include ../helpers/mixins.pug
+
+
+block body
+  .app
+    .side-bar
+      .brand
+        span.brand__first U
+        span.brand__last Farm
+      nav.nav
+        +nav-list(navLinks, activeLink)
+    .dashboard
+      .app-bar
+        i.fa-solid.fa-house.logo
+        a.logout-link(href="#") Log Out
+      main.main
+        block main
+    

@@ -1,0 +1,25 @@
+extends ../layouts/base.pug
+
+block title
+ title UFarm Routes
+
+block body
+  h1 Routes
+  ul
+    li Agricultural Officer
+      ul
+        li
+          a(href="/ao/login") Login
+        li
+          a(href="/ao") Dashboard
+        li
+          a(href="/ao/farmer-one-manage") FarmerOne Management
+        li
+          a(href="/ao/create-farmer-one") Create FarmerOne
+        li
+          a(href="/ao/communication") Communication
+        li
+          a(href="/ao/statistics") Statistics
+    li FarmerOne
+    li Urban Farmer
+    li General Public

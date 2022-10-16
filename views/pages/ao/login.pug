@@ -1,0 +1,22 @@
+extends ../../layouts/auth.pug
+
+block title
+  title UFarm | Login
+
+block stylesheets
+  link(rel="stylesheet" href="/styles/global.css")
+  link(rel="stylesheet" href="/styles/auth.css")
+  link(rel="stylesheet" href="/styles/ao/login.css")
+
+block form
+  form.form.login-form(action="#" method="get")
+    .form__form-header Log In
+    .form__form-group
+      label.form__form-label(for="email") Email
+      input#email.form__form-text-input(type="email" name="email" required)
+      .form__form-error stu
+    .form__form-group
+      label.form__form-label(for="password") Password
+      input#password.form__form-text-input(type="password" name="password" required)
+      .form__form-error stu
+    button.form__form-submit-button(type="submit") Log in

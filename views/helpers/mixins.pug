@@ -1,0 +1,14 @@
+mixin nav-item(item, active)
+  - var isActive = item.link === active
+  li.nav-list__nav-item
+    a.nav-list__nav-link(href=`${item.link}` class=`${isActive ? "nav-list__nav-link--active" : ""}`)
+      i.nav-list__item-icon.fa-solid(class=`fa-${item.faIcon}`)
+      span.nav-list__item-text= item.text
+
+
+mixin nav-list(navItems, activeLink)
+  ul.nav-list
+    each item in navItems
+      +nav-item(item, activeLink)
+      
+
