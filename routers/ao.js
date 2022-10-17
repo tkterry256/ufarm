@@ -10,14 +10,6 @@ module.exports = (basePath) => {
     res.render("pages/ao/dashboard", viewData);
   });
 
-  router.get("/register", (req, res) => {
-    res.render("pages/ao/register");
-  });
-
-  router.get("/login", (req, res) => {
-    res.render("pages/ao/login")
-  });
-
   router.get("/farmer-one-manage", (req, res) => {
     res.render(
       "pages/ao/farmer-one-manage",

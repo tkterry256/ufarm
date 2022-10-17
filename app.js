@@ -24,7 +24,9 @@ app.get("/", (req, res) => {
   res.render("pages/index");
 });
 
-app.get;
+app.get("/login", (req, res) => {
+  res.render("pages/login")
+});
 
 app.listen(PORT, () => {
   console.log(`The Sandbox server listening on port ${PORT}`);
