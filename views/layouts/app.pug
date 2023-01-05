@@ -1,19 +1,38 @@
 extends ./base.pug
 include ../helpers/mixins.pug
 
+block stylesheets
+  link(rel="stylesheet", href="/styles/app.css")
+
+block scripts
+  script(src="/scripts/app.js" type="text/javascript") 
+
 
 block body
   .app
-    .side-bar
-      .brand
-        span.brand__first U
-        span.brand__last Farm
-      nav.nav
-        +nav-list(navLinks, activeLink)
-    .dashboard
-      .app-bar
-        i.fa-solid.fa-house.logo
-        a.logout-link(href="#") Log Out
-      main.main
+    .sidebar.overflow-auto
+      +nav-list(navLinks, activeLink)
+    #sidebar.offcanvas.offcanvas-start.overflow-auto(tabindex="-1" )
+      +nav-list(navLinks, activeLink)
+    .main
+      header.d-flex.bg-white.p-2.align-items-center
+        button.btn(data-bs-toggle="offcanvas" data-bs-target="#sidebar")
+          span.material-icons.d-block.d-lg-none menu
+        .dropdown.ms-auto
+          .btn.rounded-circle.bg-primary.text-light.d-flex.justify-content-center.align-items-center.fw-bold.fs-4(style="height: 48px;width:48px;" data-bs-toggle="dropdown")= user.fullName[0]
+          ul.dropdown-menu
+            li.dropdown-item.fw-bold= user.fullName
+            li.dropdown-item= `Role: ${user.role}`
+            if user.role === "FarmerOne" || user.role === "UrbanFarmer"
+              li.dropdown-item= `Ward: ${user.ward}`
+            if user.role === "FarmerOne"
+              li.dropdown-item= `Status: ${user.status}`
+            hr.m-1
+            li
+              a.dropdown-item(href='#') Cart
+            li
+              a.dropdown-item.fw-bold.ms-auto.text-danger(href="/logout") Logout
+      .py-4.px-3.px-md-4.px-lg-5
         block main
-    
+
+  

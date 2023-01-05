@@ -1,0 +1,73 @@
+extends ../../layouts/app.pug
+
+block title
+  title Update FarmerOne
+
+block main
+  form#new-farmer-one.bg-white.rounded.p-3(action="" method="post" autocomplete="off")
+    input(autocomplete="false" name="hidden" type="text" style="display: none;")
+    h5.fw-bold.mb-4 Update FarmerOne
+    .alert.alert-info.alert-dismissible.fade.show(role='alert')
+      strong Info 
+      | Only "Phone Number" and "Activities Undertaken" can be updated
+      button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+    //- h6.text-info Only "Phone number" and "Activities undertaken" can be updated
+    .row.row-cols-1.row-cols-md-2.gy-2.mb-3
+      div
+        label.form-label(for="unique-id") Unique ID
+        input#unique-id.form-control(type="text" value=farmerOne.uniqueId disabled)
+        #unique-id-error.fs-6.text-danger
+      div
+        label.form-label(for="full-name") Full name
+        input#full-name.form-control(type="text" value=farmerOne.fullName disabled)
+        #full-name-error.fs-6.text-danger
+      div
+        label.form-label(for="gender") Gender
+        select#gender.form-select(disabled)
+          option(value="" disabled) Choose gender 
+          option(value="Male" selected=farmerOne.gender==="Male") Male
+          option(value="Female" selected=farmerOne.gender==="Female") Female
+        #gender-error.fs-6.text-danger
+      div
+        label.form-label(for="date-of-birth") Date of Birth
+        input#date-of-birth.form-control(type="date" value=farmerOne.dateOfBirth.toLocaleDateString('fr-CA') disabled)
+        #date-of-birth-error.fs-6.text-danger
+      div
+        label.form-label(for="phone-number") Phone Number
+        input#phone-number.form-control(type="tel" name="phone-number" placeholder="e.g. 0781234567" value=farmerOne.phoneNumber)
+        #phone-number-error.fs-6.text-danger
+      div
+        label.form-label(for="nin-number") NIN Number
+        input#nin-number.form-control(type="tel" value=farmerOne.ninNumber disabled)
+        #nin-number-error.fs-6.text-danger
+      div
+        label.form-label(for="ward") Ward
+        select#ward.form-select(disabled)
+          option(value="" disabled) Choose ward 
+          option(value="Masajja 1" selected=farmerOne.ward === "Masajja 1") Masajja 1
+          option(value="Masajja 2" selected=farmerOne.ward === "Masajja 2") Masajja 2
+          option(value="Masajja 3" selected=farmerOne.ward === "Masajja 3") Masajja 3
+          option(value="Masajja 4" selected=farmerOne.ward === "Masajja 4") Masajja 4
+        #ward-error.fs-6.text-danger
+      div
+        label.form-label(for="residence-type") Residence Type
+        select#residence-type.form-select(disabled)
+          option(value="" disabled) Choose residence type 
+          option(value="Permanent" selected=farmerOne.residenceType === "Permanent") Permanent
+          option(value="Temporary" selected=farmerOne.residenceType === "Temporary") Temporary
+        #residence-type-error.fs-6.text-danger
+      div
+        label.form-label(for="residence-duration") Period of stay in years
+        input#residence-duration.form-control(value=farmerOne.residenceDuration placeholder="Period of stay in years" disabled)
+        #residence-duration-error.fs-6.text-danger
+      div
+        label.form-label(for="residence-directions") Residence Directions
+        textarea#residence-directions.form-control(style="height: 150px;" disabled)= farmerOne.residenceDirections
+        #residence-directions-error.fs-6.text-danger
+      div
+        label.form-label(for="activities-undertaken") Activities Undertaken
+        textarea#activities-undertaken.form-control(name="activities-undertaken" placeholder="Enter each activity on a new line" style="height: 150px;")= farmerOne.activitiesUndertaken
+        #activities-undertaken-error.fs-6.text-danger
+    .text-end
+      button.btn.btn-primary(type="submit") Update FarmerOne
+  script(src="/scripts/ao/farmer-one-validate.js") 

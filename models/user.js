@@ -17,22 +17,30 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: true,
+    enum: ["AgricOfficer", "FarmerOne", "UrbanFarmer", "Public"],
   },
   ward: {
     type: String,
     trim: true,
+    enum: ["Masajja 1", "Masajja 2", "Masajja 3", "Masajja 4"],
+  },
+  status: {
+    type: String,
+    trim: true,
+    enum: ["Active", "Inactive"],
+    default: "Inactive",
   },
   gender: {
     type: String,
     trim: true,
+    enum: ["Male", "Female"],
   },
   dateOfBirth: {
     type: Date,
-    trim: true,
   },
   dateOfRegistration: {
     type: Date,
-    trim: true,
+    default: Date.now,
   },
   ninNumber: {
     type: String,
@@ -51,13 +59,14 @@ const UserSchema = new mongoose.Schema({
   residenceType: {
     type: String,
     trim: true,
+    enum: ["Permanent", "Temporary"],
   },
-  durationOfStay: {
+  residenceDuration: {
     type: Number,
     trim: true,
   },
   activitiesUndertaken: {
-    type: [String],
+    type: String,
     trim: true,
   },
 });

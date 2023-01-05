@@ -1,0 +1,38 @@
+extends ../layouts/base.pug
+
+block title
+  title UFarm Register
+
+block body
+  main.container-fluid
+    .row.vh-100
+      .d-none.col-lg-6.d-lg-flex.justify-content-center.align-items-center.bg-primary
+        h1.text-light(style="font-size: 5rem;")
+          span.fw-bold U
+          span -Farm
+      .col-12.col-lg-6.overflow-auto
+        h1.fw-bold.text-center.my-4
+          span.text-primary U
+          span -Farm
+        .row
+          form#register.col-11.col-sm-8.col-lg-10.p-3.mt-5.mx-auto.bg-white(action="/register" method="post")
+            .h2.text-center.fw-bold Register
+            .mb-3
+              label.form-label(for="full-name") Full Name
+              input#full-name.form-control(type="text" name="full-name")
+              #full-name-error.text-danger.fs-6
+            .mb-3
+              label.form-label(for="unique-id") Email
+              input#unique-id.form-control(type="text" name="unique-id")
+              #unique-id-error.text-danger.fs-6
+            .mb-3
+              label.form-label(for="password") Password
+              input#password.form-control(type="password" name="password")
+              #password-error.text-danger.fs-6
+            .mb-1.text-end
+              button.btn.btn-primary.px-4(type="submit") Register
+            .mb-1
+              p
+                | Already have an account? 
+                a(href="/login") Login 
+  script(src="/scripts/register-validate.js")

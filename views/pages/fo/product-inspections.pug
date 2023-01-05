@@ -1,0 +1,39 @@
+extends ../../layouts/app.pug
+
+block title
+  title Produce Inspections
+
+block main
+  -
+    const statusToBg = {
+      "Pending": "bg-warning",
+      "Approved": "bg-success",
+      "Rejected": "bg-danger"
+    };
+
+    const status = {
+      "Pending": "Pending Approval",
+      "Approved": "Product Approved",
+      "Rejected": "Approval Rejected"
+        }
+  .container
+    h1 Products to be inspected
+    .row.row-cols-1.row-cols-sm-2.row-cols-md-3.row-cols-lg-4.g-4
+      each product,index in products
+        .col-10.col-sm-0.mx-auto.mx-sm-0
+          .card.h-100
+            .position-absolute.end-0.me-1.mt-1
+              .badge.bg-primary= `UGX ${product.unitPrice.toLocaleString("en-US")}`
+            img.card-img-top(src=`${product.imageUrl}` alt=`${product.name}` style="height: 120px; object-fit: contain;")
+            .card-body.p-0.d-flex.flex-column-reverse
+              .p-2
+                .card-text.d-flex.align-items-center
+                  .flex-fill.fs-5= product.name
+                .card-text.mb-1
+                  span Sold by
+                  span.fw-bold= ` ${product.urbanFarmer.fullName}`
+                .card-text.d-flex.flex-wrap.gap-1.align-items-start
+                  .badge.bg-info= product.category
+                form.text-end(action=`/fo/approve-product/${product._id}` method="post")
+                  button.btn.btn-success.btn-sm(type="submit") Approve
+

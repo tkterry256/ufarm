@@ -1,0 +1,31 @@
+extends ./base.pug
+
+block body
+  - 
+    const roleToDashboardRoute = {
+      "AgricOfficer": "/ao",
+      "FarmerOne": "/fo",
+      "UrbanFarmer": "/uf"
+    };
+  header.d-flex.bg-white.p-2
+    h3.fw-bold.m-0.d-flex.align-items-center
+      span.text-primary U
+      span -Farm
+    .dropdown.ms-auto
+      .btn.rounded-circle.bg-primary.text-light.d-flex.justify-content-center.align-items-center.fw-bold.fs-4(style="height: 48px;width:48px;" data-bs-toggle="dropdown")= user.fullName[0]
+      ul.dropdown-menu
+        li.dropdown-item.fw-bold= user.fullName
+        if user.role !== "Public"
+          li.dropdown-item= `Role: ${user.role}`
+        if user.role === "FarmerOne" || user.role === "UrbanFarmer"
+          li.dropdown-item= `Ward: ${user.ward}`
+        if user.role !== "Public"
+          li
+            a.dropdown-item.text-primary(href=roleToDashboardRoute[user.role]) Dashboard
+        hr.m-1
+        li
+          a.dropdown-item(href='#') Cart
+        li
+          a.dropdown-item.fw-bold.ms-auto.text-danger(href="/logout") Logout
+  .main
+    block main

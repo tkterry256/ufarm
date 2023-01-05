@@ -1,0 +1,32 @@
+extends ../../layouts/app.pug
+
+block title
+  title FarmerOnes
+
+block main
+  .p-3.bg-white.rounded
+    h5.fw-bold.mb-3 FarmerOne Details
+    table.table.table-sm
+      thead
+        tr
+          th(scope="col") Unique ID
+          th(scope="col") Full Name
+          th(scope="col") Ward
+          th(scope="col") Status
+          th(scope="col") Action
+      tbody
+        each farmerOne in farmerOnes
+          - const bg = farmerOne.status === "Active" ? "bg-success" : "bg-danger"
+          tr
+            td= farmerOne.uniqueId
+            td= farmerOne.fullName
+            td= farmerOne.ward
+            td
+              if farmerOne.status === "Active"
+                .badge(class=`${bg}`)= farmerOne.status
+              else
+                a.badge.text-decoration-none.link-light(href=`/ao/activate-farmer-one/${farmerOne._id}` class=`${bg}`)= farmerOne.status
+            td
+              a.btn.btn-sm.text-secondary(href=`/ao/update-farmer-one/${farmerOne._id}`)
+                span.material-icons.fs-5 edit
+      

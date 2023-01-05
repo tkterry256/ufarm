@@ -1,14 +1,31 @@
-mixin nav-item(item, active)
-  - var isActive = item.link === active
-  li.nav-list__nav-item
-    a.nav-list__nav-link(href=`${item.link}` class=`${isActive ? "nav-list__nav-link--active" : ""}`)
-      i.nav-list__item-icon.fa-solid(class=`fa-${item.faIcon}`)
-      span.nav-list__item-text= item.text
-
-
 mixin nav-list(navItems, activeLink)
-  ul.nav-list
+  h3.brand-name.fw-bold.text-center.my-3
+    span.text-primary.fw-bolder U
+    span -Farm
+  ul.list-unstyled.d-grid.gap-4.mt-5
     each item in navItems
       +nav-item(item, activeLink)
-      
+
+mixin nav-item(item, active)
+  - const isActive = item.path === active
+  li.col-10.mx-auto.d-flex
+    a.rounded.text-decoration-none.fw-bold.flex-grow-1.d-flex.px-3.py-2.gap-3(href=`${item.path}` class=`${isActive ? "bg-primary text-bg-primary" : "text-dark"}`)
+      span.material-icons= item.icon
+      span.flex-grow-1= item.text
+
+mixin toast(message, type)
+  -
+    const styles = {
+      "Success": {bg:"bg-success", text:"text-bg-success", title:"Success"},
+      "Error": {bg:"bg-danger", text:"text-bg-danger", title:"Error"},
+      "Info": {bg:"bg-info", text:"text-bg-info", title:"Info"} 
+    }
+    const style = styles[type]
+  .toast.show
+    .toast-header(class=`${style.bg} ${style.text}`)
+      strong.me-auto= style.title
+      button.btn.p-0(type='button' data-bs-dismiss='toast' aria-label='Close')
+        span.material-icons.fs-6(class=`${style.text}`) close
+    .toast-body= message
+
 

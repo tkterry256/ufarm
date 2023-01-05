@@ -1,0 +1,57 @@
+extends ../../layouts/app.pug
+
+block title
+  title My Products
+
+block main
+  -
+    const statusToBg = {
+      "Pending": "bg-warning",
+      "Approved": "bg-success",
+      "Rejected": "bg-danger"
+    };
+
+    const status = {
+      "Pending": "Pending Approval",
+      "Approved": "Product Approved",
+      "Rejected": "Approval Rejected"
+          }
+  .container
+    h1 My Products
+    .row.row-cols-1.row-cols-sm-2.row-cols-md-3.row-cols-lg-4.g-4
+      each product in products
+        .col-10.col-sm-0.mx-auto.mx-sm-0
+          .card.h-100
+            .position-absolute.end-0.me-1.mt-1
+              .badge.bg-primary= `UGX ${product.unitPrice.toLocaleString("en-US")}`
+            img.card-img-top(src=`${product.imageUrl}` alt=`${product.name}` style="height: 120px; object-fit: contain;")
+            .card-body.p-0.d-flex.flex-column-reverse
+              .p-2
+                if !product.availability
+                  .badge.bg-danger Marked Unavailable
+                .card-text.d-flex.align-items-center
+                  .flex-fill.fs-5= product.name
+                  .dropdown
+                    .btn.p-0(data-bs-toggle="dropdown")
+                      span.material-icons more_vert
+                    ul.dropdown-menu
+                      li
+                        a.dropdown-item(href=`/uf/update-product/${product._id}`) Update
+                      li
+                        form(action=`/uf/delete-product/${product.id}` method="post")
+                          button.dropdown-item(type="submit") Delete
+                      li
+                        if product.availability
+                          form(action=`/uf/deactivate-product/${product.id}` method="post")
+                            button.dropdown-item(type="submit") Mark as Unavailable
+                        else
+                          form(action=`/uf/activate-product/${product.id}` method="post")
+                            button.dropdown-item(type="submit") Mark as Available
+
+                .card-text.mb-1
+                  span.fw-bold= `${product.quantity} `
+                  span units in stock
+                .card-text.d-flex.flex-wrap.gap-1.align-items-start
+                  .badge.bg-info= product.category
+                  .badge(class=`${statusToBg[product.approvalStatus]}`)= status[product.approvalStatus]
+                  

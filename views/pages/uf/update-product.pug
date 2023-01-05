@@ -1,0 +1,61 @@
+extends ../../layouts/app.pug
+
+block title
+  title Update Product
+
+block main
+  form#new-product.bg-white.rounded.p-3(action="" method="post" enctype="multipart/form-data" autocomplete="off")
+    input(autocomplete="false" name="hidden" type="text" style="display: none;")
+    h5.fw-bold.mb-4 Product Details
+    .row
+      .col-10.mx-auto.mx-sm-0.col-sm-4.col-lg-3.mb-2
+        img.rounded(src=`${product.imageUrl}` alt=`${product.name}` style="height: 120px; object-fit: contain;")
+    .row.row-cols-1.row-cols-md-2.gy-2.mb-3
+      div
+        label.form-label(for="name") Name
+        input#name.form-control(type="text" name="name" placeholder="Product name" value=product.name)
+        #name-error.fs-6.text-danger
+      div
+        label.form-label(for="category") Category
+        select#category.form-select(name="category")
+          option(value="" disabled) Choose category 
+          option(value="Horticulture" selected=product.category==="Horticulture") Horticulture
+          option(value="Poultry" selected=product.category==="Poultry") Poultry
+          option(value="Dairy" selected=product.category==="Dairy") Dairy
+        #category-error.fs-6.text-danger
+      div
+        label.form-label(for="type") Type
+        select#type.form-select(name="type")
+          option(value="" disabled) Choose type 
+          option(value="Organic" selected=product.type==="Organic") Organic
+          option(value="Non organic" selected=product.type==="Non organic") Non organic
+        #type-error.fs-6.text-danger
+      div
+        label.form-label(for="unit-price") Unit Price
+        input#unit-price.form-control(type="number" name="unit-price" placeholder="Unit price" value=product.unitPrice)
+        #unit-price-error.fs-6.text-danger
+      div
+        label.form-label(for="quantity") Quantity
+        input#quantity.form-control(type="number" name="quantity" placeholder="Quantity" value=product.quantity)
+        #quantity-error.fs-6.text-danger
+      div
+        label.form-label(for="mode-of-payment") Mode of Payment
+        select#mode-of-payment.form-select(name="mode-of-payment")
+          option(value="" disabled) Choose mode of payment 
+          option(value="Cash" selected=product.modeOfPayment==="Cash") Cash
+          option(value="Mobile Money" selected=product.modeOfPayment==="Mobile Money") Mobile Money
+        #mode-of-payment-error.fs-6.text-danger
+      div
+        label.form-label(for="mode-of-delivery") Mode of Delivery
+        select#mode-of-delivery.form-select(name="mode-of-delivery")
+          option(value="" disabled) Choose mode of delivery 
+          option(value="Pick Up" selected=product.modeOfDelivery==="Pick Up") Pick Up
+          option(value="Home Delivery" selected=product.modeOfDelivery==="Home Delivery") Home Delivery
+        #mode-of-delivery-error.fs-6.text-danger
+      div
+        label.form-label(for="image") Image
+        input#image.form-control(type="file" name="image" placeholder="Product image" accept="image/png, image/jpeg")
+        #image-error.fs-6.text-danger
+    .text-end
+      button.btn.btn-primary(type="submit") Update Product
+  script(src="/scripts/uf/update-product-validate.js")

@@ -1,0 +1,25 @@
+extends ../../layouts/app.pug
+
+block title
+  title Urban Farmers
+
+block stylesheets
+  link(rel="stylesheet" href="/styles/global.css")
+  link(rel="stylesheet" href="/styles/app.css")
+  link(rel="stylesheet" href="/styles/ao/dashboard.css")
+
+block main
+  .p-3.bg-white.rounded
+    h5.fw-bold.mb-3= `Urban Farmers in ${user.ward}`
+    table.table.table-sm
+      thead
+        tr
+          th(scope="col") Unique ID
+          th(scope="col") Full Name
+      tbody
+        each urbanFarmer in urbanFarmers
+          - const bg = urbanFarmer.status === "Active" ? "bg-success" : "bg-danger"
+          tr
+            td= urbanFarmer.uniqueId
+            td= urbanFarmer.fullName
+      

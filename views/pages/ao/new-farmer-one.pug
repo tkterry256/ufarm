@@ -1,0 +1,74 @@
+extends ../../layouts/app.pug
+
+block title
+  title New FarmerOne
+
+block main
+  form#new-farmer-one.bg-white.rounded.p-3(action="" method="post" autocomplete="off")
+    input(autocomplete="false" name="hidden" type="text" style="display: none;")
+    h5.fw-bold.mb-4 FarmerOne Details
+    .row.row-cols-1.row-cols-md-2.gy-2.mb-3
+      div
+        label.form-label(for="unique-id") Unique ID
+        input#unique-id.form-control(type="text" name="unique-id" placeholder="Unique ID")
+        #unique-id-error.fs-6.text-danger
+      div
+        label.form-label(for="full-name") Full name
+        input#full-name.form-control(type="text" name="full-name" placeholder="Full name")
+        #full-name-error.fs-6.text-danger
+      div
+        label.form-label(for="password") Password
+        input#password.form-control(type="password" name="password" placeholder="Password")
+        #password-error.fs-6.text-danger
+      div
+        label.form-label(for="gender") Gender
+        select#gender.form-select(name="gender")
+          option(value="" disabled selected) Choose gender 
+          option(value="Male") Male
+          option(value="Female") Female
+        #gender-error.fs-6.text-danger
+      div
+        label.form-label(for="date-of-birth") Date of Birth
+        input#date-of-birth.form-control(type="date" name="date-of-birth" placeholder="Date of Birth")
+        #date-of-birth-error.fs-6.text-danger
+      div
+        label.form-label(for="phone-number") Phone Number
+        input#phone-number.form-control(type="tel" name="phone-number" placeholder="e.g. 0781234567")
+        #phone-number-error.fs-6.text-danger
+      div
+        label.form-label(for="nin-number") NIN Number
+        input#nin-number.form-control(type="tel" name="nin-number" placeholder="NIN Number")
+        #nin-number-error.fs-6.text-danger
+      div
+        label.form-label(for="ward") Ward
+        select#ward.form-select(name="ward")
+          option(value="" disabled selected) Choose ward 
+          option(value="Masajja 1") Masajja 1
+          option(value="Masajja 2") Masajja 2
+          option(value="Masajja 3") Masajja 3
+          option(value="Masajja 4") Masajja 4
+        #ward-error.fs-6.text-danger
+      fieldset
+        legend Residence Information
+        div
+          label.form-label(for="residence-type") Residence Type
+          select#residence-type.form-select(name="residence-type")
+            option(value="" disabled selected) Choose residence type 
+            option(value="Permanent") Permanent
+            option(value="Temporary") Temporary
+          #residence-type-error.fs-6.text-danger
+        div
+          label.form-label(for="residence-duration") Period of stay in years
+          input#residence-duration.form-control(type="number" name="residence-duration" placeholder="Period of stay in years")
+          #residence-duration-error.fs-6.text-danger
+        div
+          label.form-label(for="residence-directions") Residence Directions
+          textarea#residence-directions.form-control(name="residence-directions" placeholder="Residence Directions" style="height: 150px;")
+          #residence-directions-error.fs-6.text-danger
+      div
+        label.form-label(for="activities-undertaken") Activities Undertaken
+        textarea#activities-undertaken.form-control(name="activities-undertaken" placeholder="Enter each activity on a new line" style="height: 150px;")
+        #activities-undertaken-error.fs-6.text-danger
+    .text-end
+      button.btn.btn-primary(type="submit") Create FarmerOne
+  script(src="/scripts/ao/farmer-one-validate.js") 

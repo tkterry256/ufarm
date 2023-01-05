@@ -3,10 +3,18 @@ extends ../../layouts/app.pug
 block title
   title Dashboard
 
-block stylesheets
-  link(rel="stylesheet" href="/styles/global.css")
-  link(rel="stylesheet" href="/styles/app.css")
-  link(rel="stylesheet" href="/styles/ao/dashboard.css")
-
 block main
   h1 Dashboard
+  .row.row-cols-1.row-cols-sm-2.row-cols-md-3.row-cols-lg-4.g-4.mb-3
+    .col-10.col-sm-0.mx-auto.mx-sm-0
+      .card(style="min-height: 150px")
+        .card-body.d-flex.flex-column
+          .card-title.text-center.fw-bold FarmerOnes
+          .card-text.flex-fill.d-flex.justify-content-center.align-items-center.fs-1.fw-bold.text-success= stats.farmerOnes.count
+  .row.row-cols-1.row-cols-sm-2.row-cols-md-3.row-cols-lg-4.g-4
+    each farmerOne in stats.activeFarmerOnes
+      .col-10.col-sm-0.mx-auto.mx-sm-0
+        .card(style="min-height: 150px")
+          .card-body.d-flex.flex-column
+            .card-title.text-center.fw-bold=farmerOne.ward
+            .card-text.flex-fill.d-flex.justify-content-center.align-items-center.fs-5.fw-bold.text-success.text-center= farmerOne.fullName
