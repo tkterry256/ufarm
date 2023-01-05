@@ -129,7 +129,7 @@ router.post("/update-farmer-one/:id", async (req, res) => {
   return res.redirect("/ao/farmer-ones");
 });
 
-router.get("/activate-farmer-one", async (req, res) => {
+router.get("/activate-farmer-one/:id", async (req, res) => {
   const farmerOne = await User.findById(req.params.id).exec();
   const previousFarmerOne = await User.findOne({
     ward: farmerOne.ward,
